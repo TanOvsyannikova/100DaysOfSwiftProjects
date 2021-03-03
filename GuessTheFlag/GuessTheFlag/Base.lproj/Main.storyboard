@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qMc-B6-AmC">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="GuessTheFlag" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" tag="1" contentMode="scaleAspectFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fFW-h7-2gA">
+                                <rect key="frame" x="110" y="200" width="200" height="100"/>
+                                <state key="normal" image="france">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="ButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lkf-5a-RTp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleAspectFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6DC-ve-gIs">
+                                <rect key="frame" x="182" y="100" width="200" height="100"/>
+                                <rect key="contentStretch" x="0.050000000000000003" y="0.0" width="1" height="1"/>
+                                <state key="normal" image="russia">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="ButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fE1-cM-6hr"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="2" contentMode="scaleAspectFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZOD-mJ-TeI">
+                                <rect key="frame" x="110" y="350" width="200" height="100"/>
+                                <state key="normal" image="spain">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="ButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="v2D-21-XKf"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6DC-ve-gIs" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="15" id="5dY-dz-dBr"/>
+                            <constraint firstItem="6DC-ve-gIs" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="HEE-1q-Nkn"/>
+                            <constraint firstItem="ZOD-mJ-TeI" firstAttribute="top" secondItem="fFW-h7-2gA" secondAttribute="bottom" constant="30" id="Tgh-lo-FXw"/>
+                            <constraint firstItem="ZOD-mJ-TeI" firstAttribute="centerX" secondItem="fFW-h7-2gA" secondAttribute="centerX" id="oaq-F8-Lc4"/>
+                            <constraint firstItem="fFW-h7-2gA" firstAttribute="centerX" secondItem="6DC-ve-gIs" secondAttribute="centerX" id="p43-Ch-3hF"/>
+                            <constraint firstItem="fFW-h7-2gA" firstAttribute="top" secondItem="6DC-ve-gIs" secondAttribute="bottom" constant="27" id="tte-SC-5w5"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="uBW-uC-Aws"/>
+                    <connections>
+                        <outlet property="firstFlagButton" destination="6DC-ve-gIs" id="FMf-Sn-jD3"/>
+                        <outlet property="secondFlagButton" destination="fFW-h7-2gA" id="v0N-VI-Pva"/>
+                        <outlet property="thirdFlagButton" destination="ZOD-mJ-TeI" id="7wm-aP-PeT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="955.07246376811599" y="88.392857142857139"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="rEL-Zy-r7e">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qMc-B6-AmC" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZG5-Ej-2Q9">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="dd6-aE-6Lm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8FK-Ix-D7w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="44.927536231884062" y="88.392857142857139"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="france" width="50" height="33.5"/>
+        <image name="russia" width="50" height="33.5"/>
+        <image name="spain" width="50" height="33.5"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
