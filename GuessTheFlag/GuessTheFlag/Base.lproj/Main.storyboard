@@ -18,6 +18,9 @@
                         <subviews>
                             <button opaque="NO" tag="1" contentMode="scaleAspectFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fFW-h7-2gA">
                                 <rect key="frame" x="110" y="200" width="200" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="fFW-h7-2gA" secondAttribute="height" multiplier="2:1" id="rYw-6R-Svq"/>
+                                </constraints>
                                 <state key="normal" image="france">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                 </state>
@@ -28,6 +31,9 @@
                             <button opaque="NO" contentMode="scaleAspectFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6DC-ve-gIs">
                                 <rect key="frame" x="182" y="100" width="200" height="100"/>
                                 <rect key="contentStretch" x="0.050000000000000003" y="0.0" width="1" height="1"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="6DC-ve-gIs" secondAttribute="height" multiplier="2:1" id="cjq-wc-xCW"/>
+                                </constraints>
                                 <state key="normal" image="russia">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                 </state>
@@ -37,6 +43,9 @@
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleAspectFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZOD-mJ-TeI">
                                 <rect key="frame" x="110" y="350" width="200" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ZOD-mJ-TeI" secondAttribute="height" multiplier="2:1" id="29w-eM-o9b"/>
+                                </constraints>
                                 <state key="normal" image="spain">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                 </state>
@@ -50,7 +59,10 @@
                         <constraints>
                             <constraint firstItem="6DC-ve-gIs" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="15" id="5dY-dz-dBr"/>
                             <constraint firstItem="6DC-ve-gIs" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="HEE-1q-Nkn"/>
+                            <constraint firstItem="fFW-h7-2gA" firstAttribute="height" secondItem="6DC-ve-gIs" secondAttribute="height" id="OQZ-Df-WYu"/>
                             <constraint firstItem="ZOD-mJ-TeI" firstAttribute="top" secondItem="fFW-h7-2gA" secondAttribute="bottom" constant="30" id="Tgh-lo-FXw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ZOD-mJ-TeI" secondAttribute="bottom" constant="20" id="YeS-Od-N3R"/>
+                            <constraint firstItem="ZOD-mJ-TeI" firstAttribute="height" secondItem="fFW-h7-2gA" secondAttribute="height" id="nBr-cA-Pfo"/>
                             <constraint firstItem="ZOD-mJ-TeI" firstAttribute="centerX" secondItem="fFW-h7-2gA" secondAttribute="centerX" id="oaq-F8-Lc4"/>
                             <constraint firstItem="fFW-h7-2gA" firstAttribute="centerX" secondItem="6DC-ve-gIs" secondAttribute="centerX" id="p43-Ch-3hF"/>
                             <constraint firstItem="fFW-h7-2gA" firstAttribute="top" secondItem="6DC-ve-gIs" secondAttribute="bottom" constant="27" id="tte-SC-5w5"/>
@@ -87,9 +99,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="france" width="50" height="33.5"/>
-        <image name="russia" width="50" height="33.5"/>
-        <image name="spain" width="50" height="33.5"/>
+        <image name="france" width="200" height="100"/>
+        <image name="russia" width="200" height="100"/>
+        <image name="spain" width="200" height="100"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
