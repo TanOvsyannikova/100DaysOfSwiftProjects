@@ -134,6 +134,9 @@ class ViewController: UIViewController {
                 letterButtons.append(letterButton)
             }
         }
+        
+        buttonsView.layer.borderWidth = 1
+        buttonsView.layer.borderColor = UIColor.gray.cgColor
     }
     
     override func viewDidLoad() {
@@ -172,6 +175,10 @@ class ViewController: UIViewController {
                 ac.addAction(UIAlertAction(title: "Let's Go!", style: .default, handler: levelUp))
                 present(ac, animated: true)
             }
+        } else {
+            let ac = UIAlertController(title: "Nice try", message: "\(answerText) is not correct", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Try again", style: .default))
+            present(ac, animated: true)
         }
     }
     
