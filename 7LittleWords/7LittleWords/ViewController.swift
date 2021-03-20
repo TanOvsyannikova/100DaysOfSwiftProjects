@@ -22,6 +22,8 @@ class ViewController: UIViewController {
             scoreLabel.text = "Score: \(score)"
         }
     }
+    
+    var amountOfWordsGuessed = 0
     var level = 1
     let maxLevel = 2
     
@@ -160,26 +162,38 @@ class ViewController: UIViewController {
             return
         }
         
-        if let solutionPosition = solutions.firstIndex(of: answerText) {
-            activatedButtons.removeAll()
-            var splitAnswers = answersLabel.text?.components(separatedBy: "\n")
-            
-            splitAnswers?[solutionPosition] = answerText
-            answersLabel.text = splitAnswers?.joined(separator: "\n")
-            
-            currentAnswer.text = ""
-            score += 1
-            
-            if score % 7 == 0 {
-                let ac = UIAlertController(title: "Well Done", message: "Are you ready for the next level?", preferredStyle: .alert)
-                ac.addAction(UIAlertAction(title: "Let's Go!", style: .default, handler: levelUp))
+        if !answerText.isEmpty {
+            if let solutionPosition = solutions.firstIndex(of: answerText) {
+                activatedButtons.removeAll()
+                var splitAnswers = answersLabel.text?.components(separatedBy: "\n")
+                
+                splitAnswers?[solutionPosition] = answerText
+                answersLabel.text = splitAnswers?.joined(separator: "\n")
+                
+                currentAnswer.text = ""
+                score += 1
+                amountOfWordsGuessed += 1
+                
+                if amountOfWordsGuessed == 7 {
+                    let ac = UIAlertController(title: "Well Done", message: "Are you ready for the next level?", preferredStyle: .alert)
+                    ac.addAction(UIAlertAction(title: "Let's Go!", style: .default, handler: levelUp))
+                    present(ac, animated: true)
+                }
+            } else {
+                if score > 0 {
+                    score -= 1
+                }
+                
+                let ac = UIAlertController(title: "Nice try", message: "\(answerText) is not correct", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "Try again", style: .default))
                 present(ac, animated: true)
             }
         } else {
-            let ac = UIAlertController(title: "Nice try", message: "\(answerText) is not correct", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "Try again", style: .default))
+            let ac = UIAlertController(title: "Oops", message: "Tap some buttons to make a word", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "ok", style: .default))
             present(ac, animated: true)
         }
+        
     }
     
     func levelUp(action: UIAlertAction) {
