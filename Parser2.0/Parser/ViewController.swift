@@ -46,21 +46,28 @@ class ViewController: UITableViewController {
         
         let submitAction = UIAlertAction(title: "Submit", style: .default) { [weak self, weak ac] action in
             guard let searchedPetiton = ac?.textFields?[0].text else { return }
-            self?.submit(searchedPetiton)
+            DispatchQueue.global().async {
+                self?.submit(searchedPetiton)
+            }
+            
         }
         ac.addAction(submitAction)
         present(ac, animated: true)
     }
     
-    func submit(_ searchedPetiton: String) {
+    
+    @objc func submit(_ searchedPetiton: String) {
         
         filteredPetitions.removeAll(keepingCapacity: true)
         
         for x in petitions {
             if x.title.contains(searchedPetiton){
                 filteredPetitions.append(x)
-                tableView.reloadData()
             }
+        }
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.reloadData()
         }
     }
     
@@ -72,10 +79,10 @@ class ViewController: UITableViewController {
     
     
     @objc func showError() {
-            let ac = UIAlertController(title: "Loading error", message: "There was a problem", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "ok", style: .default))
-            present(ac, animated: true)
-        }
+        let ac = UIAlertController(title: "Loading error", message: "There was a problem", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "ok", style: .default))
+        present(ac, animated: true)
+    }
     
     
     func parse(json: Data) {
