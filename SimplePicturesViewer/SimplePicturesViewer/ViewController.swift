@@ -14,10 +14,13 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
         title = "Lovely Cats Viewer"
         navigationController?.navigationBar.prefersLargeTitles = true
         
+        performSelector(inBackground: #selector(loadImages), with: nil)
+    }
+    
+    @objc func loadImages() {
         let fm = FileManager.default
         let path = Bundle.main.resourcePath!
         let items = try! fm.contentsOfDirectory(atPath: path)
@@ -27,6 +30,8 @@ class ViewController: UITableViewController {
                 pictures.append(item)
             }
         }
+        
+        tableView.performSelector(onMainThread: #selector(UITableView.reloadData), with: nil, waitUntilDone: false)
         
     }
 
