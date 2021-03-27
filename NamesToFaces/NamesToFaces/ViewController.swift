@@ -45,7 +45,21 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
         picker.allowsEditing = true
         picker.delegate = self
         
-        present(picker, animated: true)
+        //challenge 2
+//        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerController.SourceType.camera))
+//            {
+//                picker.sourceType = UIImagePickerController.SourceType.camera
+//                picker.allowsEditing = true
+//                self.present(picker, animated: true, completion: nil)
+//            }
+//            else
+//            {
+//                let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//                self.present(alert, animated: true, completion: nil)
+//            }
+//
+       present(picker, animated: true)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -74,20 +88,30 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let person = people[indexPath.item]
         
-        let ac = UIAlertController(title: "Rename", message: nil, preferredStyle: .alert)
-        ac.addTextField()
-        
-        ac.addAction(UIAlertAction(title: "OK", style: .default) {
-            [weak self, weak ac] _ in
-            guard let newName = ac?.textFields?[0].text else {
+        let ac2 = UIAlertController(title: "Rename", message: nil, preferredStyle: .alert)
+        ac2.addTextField()
+        ac2.addAction(UIAlertAction(title: "OK", style: .default) {
+            [weak self, weak ac2] _ in
+            guard let newName = ac2?.textFields?[0].text else {
                 return
             }
             person.name = newName
             self?.collectionView.reloadData()
         })
         
+        //challenge 1
+        let ac = UIAlertController(title: "Choose action", message: nil, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Rename", style: .default, handler: {_ in self.present(ac2, animated: true)}))
+        ac.addAction(UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+                        self?.people.remove(at: indexPath.item)
+                        self?.collectionView.deleteItems(at: [indexPath])
+                    })
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+
         present(ac, animated: true)
+      
     }
+    
+   
 }
 
