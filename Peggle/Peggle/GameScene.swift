@@ -9,6 +9,17 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
+    
+    let ballColor = ["ballBlue", "ballCyan", "ballGreen", "ballGrey", "ballPurple", "ballRed", "ballYellow"]
+    
+    var counterLabel: SKLabelNode!
+    
+    var counter = 5 {
+        didSet {
+            counterLabel.text = "Balls left: \(counter)"
+        }
+    }
+    
     var scoreLabel: SKLabelNode!
     
     var score = 0 {
@@ -42,6 +53,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.position = CGPoint(x: 980, y: 700)
         addChild(scoreLabel)
         
+        counterLabel = SKLabelNode(fontNamed: "Chalkduster")
+        counterLabel.text = "Balls left: 5"
+        counterLabel.horizontalAlignmentMode = .right
+        counterLabel.position = CGPoint(x: 980, y: 650)
+        addChild(counterLabel)
+        
         editLabel = SKLabelNode(fontNamed: "Chalkduster")
         editLabel.text = "Edit"
         editLabel.position = CGPoint(x: 80, y: 700)
@@ -70,29 +87,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let objects = nodes(at: location)
         
-        let ballColor = ["ballBlue", "ballCyan", "ballGreen", "ballGrey", "ballPurple", "ballRed", "ballYellow"]
-        
         if objects.contains(editLabel) {
             editingMode.toggle()
         } else {
             if editingMode {
+                
                 let size = CGSize(width: Int.random(in: 16...128), height: 16)
                 let box = SKSpriteNode(color: UIColor(red: CGFloat.random(in: 0...1), green: CGFloat.random(in: 0...1), blue: CGFloat.random(in: 0...1), alpha: 1), size: size)
+                box.name = "obstacle"
                 box.zRotation = CGFloat.random(in: 0...3)
-                box.position = location
+                box.position = CGPoint(x: Int.random(in: 0...1024), y: Int.random(in: 0...768))
                 
                 box.physicsBody = SKPhysicsBody(rectangleOf: box.size)
                 box.physicsBody?.isDynamic = false
                 
                 addChild(box)
             } else {
-                let ball = SKSpriteNode(imageNamed: ballColor.randomElement()!)
-                ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
-                ball.physicsBody?.restitution = 0.4
-                ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0
-                ball.position = location.y > 700 ? location : CGPoint(x: location.x, y: 768)
-                ball.name = "ball"
-                addChild(ball)
+                if counter != 0 {
+                    let ball = SKSpriteNode(imageNamed: ballColor.randomElement()!)
+                    ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
+                    ball.physicsBody?.restitution = 0.4
+                    ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0
+                    ball.position = location.y > 700 ? location : CGPoint(x: location.x, y: 768)
+                    ball.name = "ball"
+                    counter -= 1
+                    addChild(ball)
+                } else {
+                    counter = 5
+                    editingMode = true
+                }
             }
         }
     }
@@ -139,9 +162,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if object.name == "good" {
             destroy(ball: ball)
             score += 1
+            counter += 1
         } else if object.name == "bad" {
             destroy(ball: ball)
             score -= score > 0 ? 1 : 0
+        } else if object.name == "obstacle" {
+            object.removeFromParent()
         }
     }
     
