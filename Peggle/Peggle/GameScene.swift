@@ -70,6 +70,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let objects = nodes(at: location)
         
+        let ballColor = ["ballBlue", "ballCyan", "ballGreen", "ballGrey", "ballPurple", "ballRed", "ballYellow"]
+        
         if objects.contains(editLabel) {
             editingMode.toggle()
         } else {
@@ -84,7 +86,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 addChild(box)
             } else {
-                let ball = SKSpriteNode(imageNamed: "ballRed")
+                let ball = SKSpriteNode(imageNamed: ballColor.randomElement()!)
                 ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
                 ball.physicsBody?.restitution = 0.4
                 ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0
