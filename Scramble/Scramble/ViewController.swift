@@ -9,9 +9,9 @@ import UIKit
 
 class ViewController: UITableViewController {
     var allWords = [String]()
-    var usedWords = [String]()
     
-    
+    var gameState = GameState(currentWord: "", usedWords: [String]())
+    let gameStateKey = "GameState"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,23 +31,62 @@ class ViewController: UITableViewController {
             allWords = ["silkworm"]
         }
         
-        startGame()
+        performSelector(inBackground: #selector(loadGameState), with: nil)
+    }
+    
+    @objc func loadGameState() {
+        let userDefaults = UserDefaults.standard
+        if let loadedState = userDefaults.object(forKey: gameStateKey) as? Data {
+            let decoder = JSONDecoder()
+            if let decodedState = try? decoder.decode(GameState.self, from: loadedState) {
+                gameState = decodedState
+            }
+        }
+        
+        //start a new game
+        if gameState.currentWord.isEmpty {
+            performSelector(onMainThread: #selector(startGame), with: nil, waitUntilDone: false)
+        }
+        //load data
+        else {
+            performSelector(onMainThread: #selector(loadGameStateView), with: nil, waitUntilDone: false)
+        }
+    }
+    
+    @objc func saveGameState() {
+        let encoder = JSONEncoder()
+        if let encodedState = try? encoder.encode(gameState) {
+            let userDefaults = UserDefaults.standard
+            userDefaults.set(encodedState, forKey: gameStateKey)
+        }
+    }
+    
+    @objc func loadGameStateView() {
+        title = gameState.currentWord
+        tableView.reloadData()
     }
     
     @objc func startGame() {
-        title = allWords.randomElement()
-        usedWords.removeAll(keepingCapacity: true)
-        tableView.reloadData()
+        gameState.currentWord = allWords.randomElement() ?? "silkworm"
+        gameState.usedWords.removeAll(keepingCapacity: true)
+        
+        DispatchQueue.global().async { [weak self] in
+            self?.saveGameState()
+            
+            DispatchQueue.main.async {
+                self?.loadGameStateView()
+            }
+        }
     }
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return usedWords.count
+        return gameState.usedWords.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Word", for: indexPath)
-        cell.textLabel?.text = usedWords[indexPath.row]
+        cell.textLabel?.text = gameState.usedWords[indexPath.row]
         return cell
     }
     
@@ -73,10 +112,16 @@ class ViewController: UITableViewController {
                 if isOriginal(word: lowerAnswer) {
                     if isReal(word: lowerAnswer) {
                         if isLong(word: lowerAnswer) {
-                            usedWords.insert(lowerAnswer, at: 0)
+                            gameState.usedWords.insert(lowerAnswer, at: 0)
                             
-                            let indexPath = IndexPath(row: 0, section: 0)
-                            tableView.insertRows(at: [indexPath], with: .automatic)
+                            DispatchQueue.global().async { [weak self] in
+                                self?.saveGameState()
+                                
+                                DispatchQueue.main.async {
+                                    let indexPath = IndexPath(row: 0, section: 0)
+                                    self?.tableView.insertRows(at: [indexPath], with: .automatic)
+                                }
+                            }
                             return
                         }
                         else { showErrorMessage(errorTitle: "Word too short", errorMessage: "Make it longer than 2 letters!") }
@@ -106,7 +151,7 @@ class ViewController: UITableViewController {
     }
     
     func isOriginal(word: String) -> Bool {
-        return !usedWords.contains(word)
+        return !gameState.usedWords.contains(word)
     }
     
     func isReal(word: String) -> Bool {

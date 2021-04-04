@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		274B6CC32619A81600FCF76C /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274B6CC22619A81600FCF76C /* GameState.swift */; };
 		2792BD4E25F7F9B0009C1E36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2792BD4D25F7F9B0009C1E36 /* AppDelegate.swift */; };
 		2792BD5025F7F9B0009C1E36 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2792BD4F25F7F9B0009C1E36 /* SceneDelegate.swift */; };
 		2792BD5225F7F9B0009C1E36 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2792BD5125F7F9B0009C1E36 /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		274B6CC22619A81600FCF76C /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		2792BD4A25F7F9B0009C1E36 /* Scramble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scramble.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2792BD4D25F7F9B0009C1E36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2792BD4F25F7F9B0009C1E36 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 				2792BD4D25F7F9B0009C1E36 /* AppDelegate.swift */,
 				2792BD4F25F7F9B0009C1E36 /* SceneDelegate.swift */,
 				2792BD5125F7F9B0009C1E36 /* ViewController.swift */,
+				274B6CC22619A81600FCF76C /* GameState.swift */,
 				2792BD5325F7F9B0009C1E36 /* Main.storyboard */,
 				2792BD5625F7F9B3009C1E36 /* Assets.xcassets */,
 				2792BD5825F7F9B3009C1E36 /* LaunchScreen.storyboard */,
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2792BD5225F7F9B0009C1E36 /* ViewController.swift in Sources */,
+				274B6CC32619A81600FCF76C /* GameState.swift in Sources */,
 				2792BD4E25F7F9B0009C1E36 /* AppDelegate.swift in Sources */,
 				2792BD5025F7F9B0009C1E36 /* SceneDelegate.swift in Sources */,
 			);
