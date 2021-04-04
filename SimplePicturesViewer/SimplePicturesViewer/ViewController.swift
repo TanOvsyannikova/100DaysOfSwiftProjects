@@ -10,7 +10,8 @@ import UIKit
 class ViewController: UITableViewController {
     
     var pictures = [String]()
-
+    var picturesTapCount = [String: Int]()
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -18,6 +19,9 @@ class ViewController: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         
         performSelector(inBackground: #selector(loadImages), with: nil)
+        
+        let userDefaults = UserDefaults.standard
+        picturesTapCount = userDefaults.object(forKey: "TapCount") as? [String: Int] ?? [String: Int]()
     }
     
     @objc func loadImages() {
@@ -34,7 +38,7 @@ class ViewController: UITableViewController {
         tableView.performSelector(onMainThread: #selector(UITableView.reloadData), with: nil, waitUntilDone: false)
         
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pictures.count
     }
@@ -42,14 +46,30 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "picture", for: indexPath)
         cell.textLabel?.text = "A Lovely Cat \(indexPath.row + 1)"
+        cell.detailTextLabel?.text = "Views: \(picturesTapCount[pictures[indexPath.row], default: 0])"
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
             vc.selectedImage = pictures[indexPath.row]
-            navigationController?.pushViewController(vc, animated: true)
+            
+            picturesTapCount[pictures[indexPath.row], default: 0] += 1
+            
+            DispatchQueue.global().async { [weak self] in
+                self?.saveTapCount()
+                
+                DispatchQueue.main.async {
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                    self?.tableView.reloadRows(at: [indexPath], with: .none)
+                }
+            }
         }
+    }
+    
+    func saveTapCount() {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(picturesTapCount, forKey: "TapCount")
     }
 }
 
