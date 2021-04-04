@@ -14,6 +14,8 @@ class ViewController: UIViewController {
     
     var countries = [String]()
     var score = 0
+    var topScore = 0
+    var topScoreKey = "TopScore"
     var counter = 1
     var correctAnswer = 0
     let amountOfQuestionsInOneGame = 10
@@ -33,6 +35,9 @@ class ViewController: UIViewController {
         secondFlagButton.layer.borderColor = UIColor.lightGray.cgColor
         thirdFlagButton.layer.borderColor = UIColor.lightGray.cgColor
         
+        let userDefaults = UserDefaults.standard
+        topScore = userDefaults.object(forKey: topScoreKey) as? Int ?? 0
+        
         askQuestion()
     }
     
@@ -44,7 +49,7 @@ class ViewController: UIViewController {
         secondFlagButton.setImage(UIImage( named: countries[1]) , for: .normal)
         thirdFlagButton.setImage(UIImage( named: countries[2]) , for: .normal)
         
-        title = countries[correctAnswer].uppercased() + "   (Flag: \(counter)/10)"
+        title = countries[correctAnswer].uppercased() + "   (Flag: \(counter)/\(amountOfQuestionsInOneGame))"
         
         
     }
@@ -67,7 +72,7 @@ class ViewController: UIViewController {
         if sender.tag == correctAnswer {
             score += 1
         } else {
-            let ac = UIAlertController(title: "Mistake!", message: "That was \(countryToCapitalLetters(country: countries[correctAnswer]))", preferredStyle: .alert)
+            let ac = UIAlertController(title: "Mistake!", message: "That was \(countryToCapitalLetters(country: countries[sender.tag]))", preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "Continue", style: .default))
             
             present(ac, animated: true)
@@ -76,7 +81,19 @@ class ViewController: UIViewController {
         
         
         if counter == amountOfQuestionsInOneGame {
-            let ac = UIAlertController(title: "Result", message: "Your final score is \(score)/10", preferredStyle: .alert)
+            
+            var alertTitle = "Result"
+            var alertMessage = "Your final score is \(score)/\(amountOfQuestionsInOneGame)"
+            
+            if score > topScore {
+                topScore = score
+                performSelector(inBackground: #selector(saveTopScore), with: nil)
+                
+                alertTitle = "New Record!"
+                alertMessage = "Great job! Your final score is \(score)/\(amountOfQuestionsInOneGame)"
+            }
+            
+            let ac = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
             
             ac.addAction(UIAlertAction(title: "Play again", style: .default, handler: askQuestion))
             
@@ -90,5 +107,9 @@ class ViewController: UIViewController {
         }
     }
     
+    @objc func saveTopScore() {
+            let userDefaults = UserDefaults.standard
+            userDefaults.set(topScore, forKey: topScoreKey)
+        }
 }
 
