@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pwx-rK-gpv">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,7 +12,7 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Instafilter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sgv-eP-ATG">
@@ -32,7 +31,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Intensity:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DbM-m5-CIa">
-                                <rect key="frame" x="20" y="720" width="70" height="21"/>
+                                <rect key="frame" x="20" y="458" width="70" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="G1l-FC-Nbn"/>
                                 </constraints>
@@ -41,13 +40,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="iYb-bx-SFY">
-                                <rect key="frame" x="105" y="715" width="291" height="30"/>
+                                <rect key="frame" x="105" y="453" width="477" height="30"/>
                                 <connections>
                                     <action selector="intensityChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="eif-Tl-LdJ"/>
                                 </connections>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I9Y-EK-Byi">
-                                <rect key="frame" x="20" y="798" width="120" height="44"/>
+                                <rect key="frame" x="20" y="536" width="120" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="02x-Zz-I9q"/>
                                     <constraint firstAttribute="width" constant="120" id="MLa-ED-bDK"/>
@@ -90,8 +89,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="zep-Cf-J2H"/>
                     <connections>
-                        <outlet property="ImageView" destination="o5R-1x-szW" id="2uO-JK-XX5"/>
-                        <outlet property="Intensity" destination="iYb-bx-SFY" id="8p9-VD-rca"/>
+                        <outlet property="imageView" destination="o5R-1x-szW" id="2uO-JK-XX5"/>
+                        <outlet property="intensity" destination="iYb-bx-SFY" id="8p9-VD-rca"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -104,7 +103,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pwx-rK-gpv" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Mrv-3g-UaF">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
