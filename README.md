@@ -1,1 +1,17 @@
-Projects Description
+# 100DaysOfSwift
+
+Here are my solutions to Paul Hudson's #100DaysOfSwift challenge
+
+Tutorial based projects + challenges + own solutions for Consolidation days
+
+https://www.hackingwithswift.com/100/swift
+
+## Previews
+
+| Project description                                      | Screenshots |
+| -------------------                                      | ----------- |
+| 🖼👀 [Project 1](https://github.com/TanOvsyannikova/100DaysOfSwiftProjects/tree/main/SimplePicturesViewer) SimplePicturesViewer<br> <i>Using: View Controllers, storyboards,<br>FileManager, UIImageView, <br>UIImage, UINavigationBar |<img src="https://github.com/TanOvsyannikova/100DaysOfSwiftProjects/blob/main/SimplePicturesViewer/Screenshots/SimplePicturesViewer1_iphone12black_portrait.png" width="200"/> <img src="https://github.com/TanOvsyannikova/100DaysOfSwiftProjects/blob/main/SimplePicturesViewer/Screenshots/SimplePicturesViewer2_iphone12black_portrait.png" width="200"/> <img src="https://github.com/TanOvsyannikova/100DaysOfSwiftProjects/blob/main/SimplePicturesViewer/Screenshots/SimplePicturesViewer3_iphone12black_portrait.png" width="200"/>|
+| ⛳🎮 [Project 2](https://github.com/TanOvsyannikova/100DaysOfSwiftProjects/tree/main/GuessTheFlag) Guess the flag game <br> <i>Using: asset catalogs, buttons, <br>colors, array shuffling, <br>random number generation, <br>@IBAction, UIAlertController | <img src="https://github.com/TanOvsyannikova/100DaysOfSwiftProjects/blob/main/GuessTheFlag/Screenshots/GuessTheFlag1_iphone12black_portrait.png" width="200"/> <img src="https://github.com/TanOvsyannikova/100DaysOfSwiftProjects/blob/main/GuessTheFlag/Screenshots/GuessTheFlag2_iphone12black_portrait.png" width="200"/> <img src="https://github.com/TanOvsyannikova/100DaysOfSwiftProjects/blob/main/GuessTheFlag/Screenshots/GuessTheFlag3_iphone12black_portrait.png" width="200"/>|
+| 📱🕸 [Project 3](https://github.com/TanOvsyannikova/100DaysOfSwiftProjects/tree/main/SimpleWebBrowser) Simple Web Browser <br> <i>Using: WKWebView, action sheets, <br>UIProgressView, UIToolbar | <img src="https://github.com/TanOvsyannikova/100DaysOfSwiftProjects/blob/main/SimpleWebBrowser/Screenshots/Browser1_iphone12black_portrait.png" width="200"/> <img src="https://github.com/TanOvsyannikova/100DaysOfSwiftProjects/blob/main/SimpleWebBrowser/Screenshots/Browser2_iphone12black_portrait.png" width="200"/> <img src="https://github.com/TanOvsyannikova/100DaysOfSwiftProjects/blob/main/SimpleWebBrowser/Screenshots/Browser3_iphone12black_portrait.png" width="200"/>|
+| 🔠🎮 [Project 4](https://github.com/TanOvsyannikova/100DaysOfSwiftProjects/tree/main/Scramble) Scramble game <br> <i>Using: UITextChecker, <br>Reading from disk, UIAlertController, <br>IndexPath | <img src="https://github.com/TanOvsyannikova/100DaysOfSwiftProjects/blob/main/Scramble/Screenshots/Scamble1_iphone12black_portrait.png" width="200"/> <img src="https://github.com/TanOvsyannikova/100DaysOfSwiftProjects/blob/main/Scramble/Screenshots/Scamble1_iphone12black_portrait.png" width="200"/>|
+| 🔧😊 [Project 5](https://github.com/TanOvsyannikova/100DaysOfSwiftProjects/tree/main/advancedLayout) Advanced Auto Layout <br> <i>Using: UAuto Layout, Constraints, <br>Visual Format Language | <img src="https://github.com/TanOvsyannikova/100DaysOfSwiftProjects/blob/main/advancedLayout/Screenshots/advancedLayout1_iphone12black_portrait.png" width="200"/> <img src="https://github.com/TanOvsyannikova/100DaysOfSwiftProjects/blob/main/advancedLayout/Screenshots/anvancedLayout2_iphone12black_landscape.png" height="200"/>|
